@@ -1,7 +1,3 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import useSWR from 'swr'
-
 import { User } from '../../modules/types/User'
 
 export type Props = {
