@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 
-import { User } from './type'
+import { User } from '../../modules/types/User'
 
 export type Props = {
   query: { id: string }
@@ -10,7 +10,7 @@ export type Props = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-const User = (props: User) => {
+const User = () => {
   // const [user, setuser] = useState<User | null>(null)
   const [isLoading, setLoading] = useState(true)
 
