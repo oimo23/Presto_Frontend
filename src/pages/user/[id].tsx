@@ -11,42 +11,31 @@ export type Props = {
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const User = () => {
-  // const [user, setuser] = useState<User | null>(null)
+  const [user, setuser] = useState<User>()
   const [isLoading, setLoading] = useState(true)
 
   const router = useRouter()
   const { id } = router.query
 
-  // ページがマウントされた時
-  // useEffect(() => {
-  //   if (!id) return
-
-  //   setLoading(true)
-  //   fetch(`/api/users/${id}`)
-  //     .then((res) => res.json())
-  //     .then((user) => {
-  //       console.info(user)
-  //       setuser(user)
-  //       setLoading(false)
-  //     })
-  // }, [])
+  // if (!isReady) return <p>Loading1...</p>
 
   const { data } = useSWR(`/api/users/${id}`, fetcher)
 
   useEffect(() => {
     if (data) {
       setLoading(false)
+      setuser(data)
     }
   }, [data])
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading || !user) return <p>Loading...</p>
 
   return (
     <div>
-      <h1>{data.name}</h1>
-      <p>年齢：{data.age}</p>
+      <h1>{user.name}</h1>
+      <p>年齢：{user.age}</p>
       <div>
-        {data.parts.map((part: string) => {
+        {user.parts.map((part: string) => {
           return <p key={part}>{part}</p>
         })}
       </div>
