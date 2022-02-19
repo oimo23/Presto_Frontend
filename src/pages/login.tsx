@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
 
 const Home: NextPage = () => {
@@ -14,10 +12,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <input type="text"/>
-        <input type="password"/>
+        <input type="text" />
+        <input type="password" />
 
-        <p><Link href="/">ログイン</Link></p>
+        <p>
+          <Link href="/">ログイン</Link>
+        </p>
       </main>
     </div>
   )

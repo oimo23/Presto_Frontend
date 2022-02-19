@@ -1,16 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
 
-const users = [
-  { id: 1, name: "taro", part: "bass", age: 22 },
-  { id: 2, name: "fushinuki", part: "drums", age: 30 }
-]
+import styles from '../styles/Home.module.css'
+import mockUsers from './user/mockUsers'
 
 const Home: NextPage = () => {
-  const usersList = users.map((user) => (
+  const usersList = mockUsers.map((user) => (
     <li key={user.id + user.name}>
       <Link href="/user/[user.id]" as={`/user/${user.id}`}>
         {user.name}
