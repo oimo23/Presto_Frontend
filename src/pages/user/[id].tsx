@@ -40,7 +40,7 @@ const User = (props: User) => {
   }, [data])
 
   if (isLoading) return <p>Loading...</p>
-  if (!user) return <p>No profile user</p>
+  if (user === null) return <p>No profile user</p>
 
   return (
     <div>
