@@ -14,6 +14,14 @@ const Home: NextPage = () => {
     </li>
   ))
 
+  const usersListIsg = mockUsers.map((user) => (
+    <li key={user.id + user.name}>
+      <Link href="/user_isg/[user.id]" as={`/user_isg/${user.id}`}>
+        {user.name}
+      </Link>
+    </li>
+  ))
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,7 +32,11 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <p>ユーザー一覧</p>
+        <h3>SSR?</h3>
         <div>{usersList}</div>
+        <br />
+        <h3>ISR</h3>
+        <div>{usersListIsg}</div>
       </main>
     </div>
   )
