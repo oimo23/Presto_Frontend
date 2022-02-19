@@ -11,8 +11,8 @@ export type Props = {
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 const User = (props: User) => {
-  const [user, setuser] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  // const [user, setuser] = useState<User | null>(null)
+  const [isLoading, setLoading] = useState(true)
 
   const router = useRouter()
   const { id } = router.query
@@ -35,19 +35,18 @@ const User = (props: User) => {
 
   useEffect(() => {
     if (data) {
-      setuser(data)
+      setLoading(false)
     }
   }, [data])
 
   if (isLoading) return <p>Loading...</p>
-  if (user === null) return <p>No profile user</p>
 
   return (
     <div>
-      <h1>{user.name}</h1>
-      <p>年齢：{user.age}</p>
+      <h1>{data.name}</h1>
+      <p>年齢：{data.age}</p>
       <div>
-        {user.parts.map((part) => {
+        {data.parts.map((part: string) => {
           return <p key={part}>{part}</p>
         })}
       </div>
