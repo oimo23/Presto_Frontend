@@ -30,9 +30,6 @@ const Home: NextPage = () => {
         <Link href="/login">
           loginページへ
         </Link>
-        <Link href="/test">
-          testページへ
-        </Link>
         <Link href="/hoge/[id]" as={`/hoge/1`}>
           hogeページへ
         </Link>
