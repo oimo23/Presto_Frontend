@@ -8,15 +8,7 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   const usersList = mockUsers.map((user) => (
     <li key={user.id + user.name}>
-      <Link href="/user/[user.id]" as={`/user/${user.id}`}>
-        {user.name}
-      </Link>
-    </li>
-  ))
-
-  const usersListIsg = mockUsers.map((user) => (
-    <li key={user.id + user.name}>
-      <Link href="/user_isg/[user.id]" as={`/user_isg/${user.id}`}>
+      <Link href="/user/[id]" as={`/user/${user.id}`}>
         {user.name}
       </Link>
     </li>
@@ -35,8 +27,15 @@ const Home: NextPage = () => {
         <h3>SSR?</h3>
         <div>{usersList}</div>
         <br />
-        <h3>ISR</h3>
-        <div>{usersListIsg}</div>
+        <Link href="/login">
+          loginページへ
+        </Link>
+        <Link href="/test">
+          testページへ
+        </Link>
+        <Link href="/hoge/[id]" as={`/hoge/1`}>
+          hogeページへ
+        </Link>
       </main>
     </div>
   )
