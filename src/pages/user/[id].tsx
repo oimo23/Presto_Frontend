@@ -17,8 +17,6 @@ const User = () => {
   const router = useRouter()
   const { id } = router.query
 
-  // if (!isReady) return <p>Loading1...</p>
-
   const { data } = useSWR(`/api/users/${id}`, fetcher)
 
   useEffect(() => {

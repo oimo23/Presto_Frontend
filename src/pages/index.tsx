@@ -24,14 +24,10 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <p>ユーザー一覧</p>
-        <h3>SSR?</h3>
         <div>{usersList}</div>
         <br />
         <Link href="/login">
           loginページへ
-        </Link>
-        <Link href="/hoge/[id]" as={`/hoge/1`}>
-          hogeページへ
         </Link>
       </main>
     </div>
