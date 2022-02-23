@@ -1,20 +1,32 @@
 import '../styles/globals.css'
 
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  // useEffect(async () => {
-  //   if (router.pathname === '/login') return // pathnameが"/login"の場合には処理を行わない
-  //   // ここに処理を書く
-  //   try {
-  //     const response = await axios.post('/api/authCheck')
-  //     console.info(response)
-  //   } catch (error) {
-  //     console.info(error)
-  //   }
-  // }, [router.pathname])
+import createEmotionCache from '../modules/framework/createEmotionCache'
+import theme from '../modules/framework/theme'
 
-  return <Component {...pageProps} />
+const clientSideEmotionCache = createEmotionCache()
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache
+}
+
+function MyApp(props: MyAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  return (
+    <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </CacheProvider>
+  )
 }
 
 export default MyApp
