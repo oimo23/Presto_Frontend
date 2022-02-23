@@ -1,9 +1,10 @@
+import { Button } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 
 import mockUsers from '../modules/mock/mockUsers'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
   const usersList = mockUsers.map((user) => (
@@ -23,12 +24,13 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>ユーザー一覧</p>
-        <div>{usersList}</div>
+        <p className="text-xl">ユーザー一覧</p>
+        <ul>{usersList}</ul>
         <br />
-        <Link href="/login">
-          loginページへ
-        </Link>
+        <Link href="/login">loginページへ</Link>
+        <br />
+        <p>Material UIのテスト</p>
+        <Button variant="contained">ボタン</Button>
       </main>
     </div>
   )
