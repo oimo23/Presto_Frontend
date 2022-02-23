@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
@@ -26,7 +27,15 @@ const User = () => {
     }
   }, [data])
 
-  if (isLoading || !user) return <p>Loading...</p>
+  if (isLoading || !user) {
+    return (
+      <>
+        <Skeleton />
+        <Skeleton />
+        <Skeleton />
+      </>
+    )
+  }
 
   return (
     <div>
