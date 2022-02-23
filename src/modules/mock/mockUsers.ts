@@ -11,7 +11,13 @@ const mockUsers: Array<User> = [
     id: 2,
     name: 'Abe',
     parts: ['guitar', 'bass'],
-    age: 30,
+    age: 31,
+  },
+  {
+    id: 3,
+    name: 'Koga',
+    parts: ['guitar'],
+    age: 31,
   },
 ]
 
