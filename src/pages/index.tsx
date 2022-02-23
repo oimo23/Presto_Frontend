@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <p>ユーザー一覧</p>
+        <p className="text-xl">ユーザー一覧</p>
         <div>{usersList}</div>
         <br />
         <Link href="/login">
