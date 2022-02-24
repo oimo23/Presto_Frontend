@@ -4,28 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import mockUsers from '../../../modules/mock/mockUsers'
 import { User } from '../../../modules/types/User'
 
-// type Data = {
-//   id: number
-//   name: string
-//   part: Array<string>
-//   age: number
-// }
-
-// const mockUsers: Array<Data> = [
-//   {
-//     id: 1,
-//     name: 'Fushinuki',
-//     part: ['drums'],
-//     age: 30,
-//   },
-//   {
-//     id: 2,
-//     name: 'Abe',
-//     part: ['guitar', 'bass'],
-//     age: 30,
-//   },
-// ]
-
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<User>,
