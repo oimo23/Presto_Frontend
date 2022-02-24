@@ -27,8 +27,8 @@ const Home: NextPage = () => {
 
 export default Home
 
-export async function getServerSideProps() {
-  return {
-    props: {}, // ページコンポーネントにpropsとして渡されます。
-  }
-}
+// export async function getServerSideProps() {
+//   return {
+//     props: {}, // ページコンポーネントにpropsとして渡されます。
+//   }
+// }
