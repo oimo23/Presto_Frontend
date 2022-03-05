@@ -21,7 +21,9 @@ const Home: NextPage = () => {
           <Button
             className="mt-4"
             variant="contained"
-            onClick={() => loginWithRedirect()}
+            onClick={() =>
+              loginWithRedirect({ returnTo: window.location.origin })
+            }
           >
             Auth0でログイン
           </Button>
