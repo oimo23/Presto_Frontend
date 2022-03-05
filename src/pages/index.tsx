@@ -13,7 +13,7 @@ import styles from '../styles/Home.module.scss'
 const Home: NextPage = () => {
   const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
 
-  const [authToken, setAuthToken] = useState(null)
+  const [authToken, setAuthToken] = useState<string>()
 
   // Auth0のトークンを取得したらconsole.infoに表示する
   useEffect(() => {
