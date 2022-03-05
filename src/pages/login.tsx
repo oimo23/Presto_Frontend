@@ -22,7 +22,7 @@ const Home: NextPage = () => {
             className="mt-4"
             variant="contained"
             onClick={() =>
-              loginWithRedirect({ returnTo: window.location.origin })
+              loginWithRedirect({ redirectUri: window.location.origin })
             }
           >
             Auth0でログイン
