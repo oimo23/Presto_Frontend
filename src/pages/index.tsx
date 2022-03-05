@@ -58,7 +58,10 @@ const Home: NextPage = () => {
             <p>{user?.email}</p>
             <p>トークン</p>
             <p>{authToken}</p>
-            <Button variant="contained" onClick={() => logout()}>
+            <Button
+              variant="contained"
+              onClick={() => logout({ returnTo: window.location.origin })}
+            >
               logout
             </Button>
           </>
