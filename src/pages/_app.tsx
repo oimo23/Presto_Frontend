@@ -43,12 +43,7 @@ function AppInit() {
 }
 
 function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps, router } = props
-  
-  useEffect(() => {
-    if(router.pathname === "/login") return; // pathnameが"/login"の場合には処理を行わない
-    // ここに処理を書く
- },[router.pathname])
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
   return (
     <Auth0Provider
