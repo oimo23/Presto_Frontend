@@ -7,12 +7,18 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import Header from '../components/templates/Header'
+import { useCurrentUser } from '../hooks/useCurrentUser'
+import { useRequireLogin } from '../hooks/useRequireLogin'
 import mockUsers from '../modules/mock/mockUsers'
 import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
   const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
   const [authToken, setAuthToken] = useState<string>()
+  const { currentUser } = useCurrentUser()
+
+  // ログインが必要なページとする
+  useRequireLogin()
 
   // Auth0のトークンを取得したらconsole.infoに表示する
   useEffect(() => {
@@ -53,11 +59,15 @@ const Home: NextPage = () => {
 
         {isAuthenticated && (
           <>
+            <h2>実際のログイン情報</h2>
             <p>{JSON.stringify(user)}</p>
             <p>ログイン中</p>
             <p>{user?.email}</p>
             <p>トークン</p>
             <p>{authToken}</p>
+            <br />
+            <h2>Swaggerからのログイン情報</h2>
+            <p>{JSON.stringify(currentUser)}</p>
             <Button
               variant="contained"
               onClick={() => logout({ returnTo: window.location.origin })}
