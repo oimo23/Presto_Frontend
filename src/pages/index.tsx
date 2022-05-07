@@ -12,7 +12,6 @@ import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
   const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
-
   const [authToken, setAuthToken] = useState<string>()
 
   // Auth0のトークンを取得したらconsole.infoに表示する
@@ -54,6 +53,7 @@ const Home: NextPage = () => {
 
         {isAuthenticated && (
           <>
+            <p>{JSON.stringify(user)}</p>
             <p>ログイン中</p>
             <p>{user?.email}</p>
             <p>トークン</p>
@@ -72,10 +72,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-// getServerSidePropsを宣言するとSSRになる
-// export async function getServerSideProps() {
-//   return {
-//     props: {}, // ページコンポーネントにpropsとして渡されます。
-//   }
-// }
