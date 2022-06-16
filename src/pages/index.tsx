@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { Button } from '@mui/material'
+import axios, { AxiosResponse } from 'axios'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -9,13 +10,15 @@ import { useState } from 'react'
 import Header from '../components/templates/Header'
 import { useCurrentUser } from '../hooks/useCurrentUser'
 import { useRequireLogin } from '../hooks/useRequireLogin'
-import mockUsers from '../modules/mock/mockUsers'
+// import mockUsers from '../modules/mock/mockUsers'
+import { User } from '../modules/types/User'
 import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
   const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
   const [authToken, setAuthToken] = useState<string>()
   const { currentUser } = useCurrentUser()
+  const [usersList, setUsersList] = useState<User[]>()
 
   // ログインが必要なページとする
   useRequireLogin()
@@ -32,13 +35,27 @@ const Home: NextPage = () => {
     })()
   }, [getAccessTokenSilently])
 
-  const usersList = mockUsers.map((user) => (
-    <li key={user.id + user.name}>
-      <Link href="/user/[id]" as={`/user/${user.id}`}>
+  useEffect(() => {
+    (async function () {
+      try {
+        const response: AxiosResponse<any> = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URI}/api/users`,
+          { headers: { Authorization: "Bearer token"} }
+        )
+        setUsersList(response.data.users)
+      } catch (e) {
+        console.error(e)
+      }
+    })();
+  },[])
+
+  const usersListHtml = usersList ? usersList.map((user) => (
+    <li key={user.userId + user.name}>
+      <Link href="/user/[id]" as={`/user/${user.userId}`}>
         {user.name}
       </Link>
     </li>
-  ))
+  )) : null
 
   return (
     <div className={styles.container}>
@@ -52,7 +69,7 @@ const Home: NextPage = () => {
       <Header />
       <main className={styles.main}>
         <p className="text-xl">ユーザー一覧</p>
-        <ul>{usersList}</ul>
+        <ul>{ usersListHtml }</ul>
         <br />
         <Link href="/login">loginページへ</Link>
         <br />

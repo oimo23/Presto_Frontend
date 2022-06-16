@@ -28,7 +28,7 @@ function AppInit() {
     (async function () {
       try {
         const currentUser: User = await axios.get(
-          'http://localhost:8002/api/users/me',
+          `${process.env.NEXT_PUBLIC_API_URI}/api/users/me`,
           { headers: { Authorization: "Bearer token"} }
         )
 	      // ログインユーザーの情報が取得できたのでグローバルステートにセット

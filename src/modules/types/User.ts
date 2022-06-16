@@ -1,6 +1,8 @@
+import { Position } from "./Position";
+
 export type User = {
-  id: number
+  userId: number
   name: string
-  parts: Array<string>
+  positions: Array<Position>
   age: number
 }
